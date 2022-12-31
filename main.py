@@ -135,7 +135,7 @@ def app_sst():
 
             for audio_frame in audio_frames:
                 # sound에 브라우저를 통해 녹음하는 소리가 저장됨
-                text_output.markdown(f"========================")
+                # text_output.markdown(f"========================")
                 text_output.markdown(f"audio_frame {type(audio_frame)}")
                 sound = pydub.AudioSegment(
                     data=audio_frame.to_ndarray().tobytes(),
@@ -144,20 +144,20 @@ def app_sst():
                     channels=len(audio_frame.layout.channels),
                 )
                 # 실시간으로 녹음되는 것들을 합치는 과정인듯
-                text_output.markdown(f"sound {type(sound)}")
+                # text_output.markdown(f"sound {type(sound)}")
                 sound_chunk += sound
             
             if len(sound_chunk) > 0:
                 # set_channels(1): 인자값이 1이면 모노, 2면 스테레오라는데,,, 잘 모르겠음 쨌든 기본 값은 1이라 그대로 유지
                 # set_frame_rate(): 음질의 품질을 이야기 하는 것 같은데,, 잘 모르겠네
-                text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
+                # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
                 sound_chunk = sound_chunk.set_channels(1)
-                text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
+                # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
                 
 
                 buffer = np.array(sound_chunk.get_array_of_samples())
                 # buffer 상태 확인
-                text_output.markdown(f"buffer: {type(buffer)}")
+                # text_output.markdown(f"buffer: {type(buffer)}")
                 # stream: 모델에 
                 stream.feedAudioContent(buffer)
                 text = stream.intermediateDecode()
