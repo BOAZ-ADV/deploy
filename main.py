@@ -151,7 +151,8 @@ def app_sst():
 
                 buffer = np.array(sound_chunk.get_array_of_samples())
                 # buffer 상태 확인
-                text_output.markdown(f"{buffer}")
+                text_output.markdown(f"{type(buffer)}")
+                # stream: 모델에 
                 stream.feedAudioContent(buffer)
                 text = stream.intermediateDecode()
                 text_output.markdown(f"**Text:** {text}")
