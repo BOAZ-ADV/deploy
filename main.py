@@ -91,7 +91,7 @@ ViTo STT 적용을 위한 실험 페이지
 
 
 
-def app_sst(model_path: str, lm_path: str, lm_alpha: float, lm_beta: float, beam: int):
+def app_sst():
     webrtc_ctx = webrtc_streamer(
         key="speech-to-text",
         mode=WebRtcMode.SENDONLY,
