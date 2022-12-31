@@ -148,11 +148,11 @@ def app_sst():
                 # set_channels(1): 인자값이 1이면 모노, 2면 스테레오라는데,,, 잘 모르겠음 쨌든 기본 값은 1이라 그대로 유지
                 # set_frame_rate(): 음질의 품질을 이야기 하는 것 같은데,, 잘 모르겠네
                 sound_chunk = sound_chunk.set_channels(1)
-                text_output.markdown(f"{type(sound_chunk)}")
+                text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
 
                 buffer = np.array(sound_chunk.get_array_of_samples())
                 # buffer 상태 확인
-                text_output.markdown(f"{type(buffer)}")
+                text_output.markdown(f"buffer: {type(buffer)}")
                 # stream: 모델에 
                 stream.feedAudioContent(buffer)
                 text = stream.intermediateDecode()
