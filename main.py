@@ -136,7 +136,7 @@ def app_sst():
             for audio_frame in audio_frames:
                 # sound에 브라우저를 통해 녹음하는 소리가 저장됨
                 # text_output.markdown(f"========================")
-                text_output.markdown(f"audio_frame {type(audio_frame)}")
+                # text_output.markdown(f"audio_frame {type(audio_frame)}")
                 sound = pydub.AudioSegment(
                     data=audio_frame.to_ndarray().tobytes(),
                     sample_width=audio_frame.format.bytes,
@@ -144,7 +144,7 @@ def app_sst():
                     channels=len(audio_frame.layout.channels),
                 )
                 # 실시간으로 녹음되는 것들을 합치는 과정인듯
-                # text_output.markdown(f"sound {type(sound)}")
+                text_output.markdown(f"sound {type(sound)}")
                 sound_chunk += sound
             
             if len(sound_chunk) > 0:
