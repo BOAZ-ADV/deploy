@@ -135,6 +135,7 @@ def app_sst():
 
             for audio_frame in audio_frames:
                 # sound에 브라우저를 통해 녹음하는 소리가 저장됨
+                text_output.markdown(f"========================")
                 text_output.markdown(f"audio_frame {type(audio_frame)}")
                 sound = pydub.AudioSegment(
                     data=audio_frame.to_ndarray().tobytes(),
