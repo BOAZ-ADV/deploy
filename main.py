@@ -13,6 +13,10 @@ import numpy as np
 import pydub
 import streamlit as st
 
+import requests
+import json
+import STT
+
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 
 HERE = Path(__file__).parent
@@ -153,14 +157,14 @@ def app_sst():
                 # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
                 sound_chunk = sound_chunk.set_channels(1)
                 # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
-                
+                sound_chunk.export("./test.mp3", format="mp3")
 
-                buffer = np.array(sound_chunk.get_array_of_samples())
+                # buffer = np.array(sound_chunk.get_array_of_samples())
                 # buffer 상태 확인
-                text_output.markdown(f"buffer: {type(buffer)}")
+                # text_output.markdown(f"buffer: {type(buffer)}")
                 # stream: 모델에 
-                stream.feedAudioContent(buffer)
-                text = stream.intermediateDecode()
+                # stream.feedAudioContent(buffer)
+                # text = stream.intermediateDecode()
                 text_output.markdown(f"**Text:** {text}")
         else:
             status_indicator.write("AudioReciver is not set. Abort.")
