@@ -18,6 +18,7 @@ import json
 import STT
 
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
+import speech_recognition as sr
 
 HERE = Path(__file__).parent
 
@@ -157,7 +158,14 @@ def app_sst():
                 # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
                 sound_chunk = sound_chunk.set_channels(1)
                 # text_output.markdown(f"sound_chunk: {type(sound_chunk)}")
-                sound_chunk.export("./test.mp3", format="mp3")
+                sound_chunk.export("./test.wav", format="wav")
+                r = sr.Recognizer()
+                test = sr.AudioFile('./test.wav')
+                with test as source:
+                    audio = r.record(source)
+
+                result = r.recognize_google(audio, language = 'ko-KR', show_all=True)
+                text = result['alternative'][0]['transcript']
 
                 # buffer = np.array(sound_chunk.get_array_of_samples())
                 # buffer 상태 확인
